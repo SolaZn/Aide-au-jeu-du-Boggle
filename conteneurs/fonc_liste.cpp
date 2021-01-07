@@ -10,6 +10,7 @@ using namespace std;
 #include "Liste.h"
 
 void tri(Liste& l) {
+	assert(l.nb > 0);
 	Item tmp;
 	for (unsigned int i = 0; i < longueur(l) - 1; i++) {
 		for (unsigned int j = i; j < longueur(l) - 1; j++) {
@@ -23,6 +24,7 @@ void tri(Liste& l) {
 }
 
 void doublon(Liste& l) {
+	assert(l.nb > 0);
 	Liste l2;
 	initialiser(l2, l.c.capacite, l.c.pasExtension);
 	for (unsigned int i = 0; i < longueur(l); i++) {
@@ -46,7 +48,7 @@ void saisir_liste(Liste& l) {
 	bool flux_ouvert = true;
 
 	do {
-		char* buffer = new char[35];
+		char* buffer = new char[35]; //delete ?
 		cin >> buffer; // on remplis la chaine de caractere
 
 		if (strcmp(buffer, "*") == 0) { // si le caractère de fin est tapé
@@ -57,6 +59,12 @@ void saisir_liste(Liste& l) {
 			inserer(l, longueur(l), buffer);
 		}
 	} while (flux_ouvert == true);
+}
+
+void afficher(Liste& l) {
+	for (unsigned int i = 0; i < longueur(l); i++) {
+		cout << lire(l, i) << endl;
+	}
 }
 
 void saisirL_liste(L_liste& l_l) {
@@ -104,8 +112,6 @@ void diffliste(int cas, Liste& liste_prio, Liste& liste_pas_prio) {
 			}
 		}
 	}
-
-
 }
 
 void lire_listedeliste(Liste& l) {

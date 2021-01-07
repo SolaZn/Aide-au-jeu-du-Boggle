@@ -14,6 +14,9 @@ struct Liste {
     unsigned int nb;	
 };
 
+/** @brief Conteneur de listes alloué en mémoire dynamique
+ *  de capacité extensible suivant un pas d'extension.
+ */
 struct L_liste {
 	/// Capacité du conteneur (>0).
 	unsigned int capacite;
@@ -35,6 +38,15 @@ struct L_liste {
  */
 void initialiser(Liste& l, unsigned int capa, unsigned int pas);
 
+
+/**
+ * @brief Initialiser une liste vide, la liste est allouée en mémoire dynamique.
+ * @see detruire, la liste est à désallouer en fin d’utilisation.
+ * @param[out] l La liste à initialiser.
+ * @param[in] capa Capacité de la liste.
+ * @param[in] pas Pas d’extension de la liste.
+ * @pre capa > 0 et pas > 0.
+ */
 void initialiser_ll(L_liste& liste_liste, unsigned int capa, unsigned int pas);
 
 void ecrire_ll(L_liste& liste_liste, unsigned int i, Liste& l);

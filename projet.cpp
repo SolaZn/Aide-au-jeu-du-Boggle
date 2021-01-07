@@ -78,30 +78,12 @@ void exo2() {
 	bool flux_ouvert = true;
 	initialiser(liste_mots, 1, 2);
 
-	do {
-		char* buffer = new char[35]; // essayer de s'en débarasser
-		cin >> buffer; // on remplis la chaine de caractere
-		if (strcmp(buffer, "*") == 0) { // si le caractère de fin est tapé
-			inserer(liste_mots, longueur(liste_mots), buffer);
-			flux_ouvert = false; // on arrête l'écriture
-		}
-		else {
-			inserer(liste_mots, longueur(liste_mots), buffer);
-		}
+	saisir_liste(liste_mots);
 
-		if (flux_ouvert == false) {
+	doublon(liste_mots);
+	tri(liste_mots);
 
-			doublon(liste_mots);
-			tri(liste_mots);
-
-			for (unsigned int i = 0; i < longueur(liste_mots); i++) {
-				cout << lire(liste_mots, i) << endl;
-			}
-
-			delete[] buffer;
-		}
-
-	} while (flux_ouvert == true); // tant que le "flux" est ouvert -> tant qu'on écrit				   
+	afficher(liste_mots);
 
 	detruire(liste_mots);
 }
