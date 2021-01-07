@@ -3,6 +3,7 @@
 using namespace std;
 
 #include "conteneurs/Liste.h"
+#include "conteneurs/fonc_liste.h"
 
 // Nous vous imposons de réunir les 6 programmes du projet de sda dans 
 // un unique projet Visual. Ceci doit vous permettre de partager du code 
@@ -33,93 +34,6 @@ using namespace std;
 // Pour l'exercice 2, cela donne : 
 // (echo 2 & type in1-2.txt) | Boggle_SDA.exe
 
-
-void echanger(Liste& l, unsigned int i, unsigned int j) {
-	assert(i >= 0 && j < l.nb);
-	char* aux = lire(l, i); // T type des éléments de liste
-	ecrire(l, i, lire(l, j));
-	ecrire(l, j, aux);
-}
-
-void tri(Liste& l) {
-	Item tmp;
-	for (unsigned int i = 0; i < longueur(l) - 1; i++) {
-		for(unsigned int j = i; j < longueur(l) - 1; j++) {
-			if (strcmp(lire(l, i), lire(l, j)) > 0) {
-				tmp = lire(l, i);
-				ecrire(l, i, lire(l, j));
-				ecrire(l, j, tmp);
-			}
-		}
-	}
-}
-
-void doublon(Liste& l) {
-	Liste l2;
-	initialiser(l2, l.c.capacite, l.c.pasExtension);
-	for (unsigned int i = 0; i < longueur(l); i++) {
-		inserer(l2, i, lire(l, i));
-	}
-	for (unsigned int i = 0; i < longueur(l); i++) {
-		for (unsigned int j = 0; j < longueur(l2); j++) {
-			if (i != j) {
-				if (strcmp(lire(l, i), lire(l2, j)) == 0) {
-					supprimer(l, j);
-					supprimer(l2, j);
-				}
-			}
-		}
-	}
-
-	detruire(l2);
-}
-
-void agregliste(int cas, Liste& liste_prio, Liste& liste_pas_prio) {
-	// coder la même fonction pour le 3 en parcourant la liste du début à la fin pour vérifier si un mot correspond,
-	// auquel cas ils n'apparaissent pas dans la première
-	if (cas == 0) {
-		for (unsigned int h = 0; h < longueur(liste_prio); h++) {
-			int mot_trouve = 0;
-			for (unsigned int i = 0; i < longueur(liste_pas_prio); i++) {
-				if (strcmp(lire(liste_prio, h), lire(liste_pas_prio, i)) == 0) {
-					mot_trouve++;
-					break;
-				}
-			}
-			if (mot_trouve == 0) {
-				cout << lire(liste_prio, h) << endl;
-			}
-		}
-		cout << "*" << endl;
-	}
-
-	if (cas == 1) {
-		for (unsigned int i = 0; i < longueur(liste_prio); i++) {
-			for (unsigned int j = 0; j < longueur(liste_pas_prio); j++) {
-				if (strcmp(lire(liste_prio, i), lire(liste_pas_prio, j)) == 0) {
-					cout << lire(liste_prio, i) << endl;
-					break;
-				}
-			}
-		}
-	}
-
-	
-}
-
-void lire_listedeliste(Liste& l) {
-		// concevoir un algo qui lis une liste de liste
-	/*
-		on aura besoin de : connaître le nombre de liste ? (stocké dans nb ?) l.nb ?
-							de connaître la longueur de chacune d'entre elles
-							de les comparer toutes les unes entre elles en même temps pour savoir si il faut écrire
-							faire en sorte que l'algo de recherche n'affiche le mot que si il a été trouvé deux fois ou plus dans toutes les listes
-	*/
-}
-
-void saisir() {
-	// idée de fonction qui remplirait elle même les listes de liste ou alors permettrait de pouvoir faire des listes
-}
 
 void exo1() {
 	bool flux_ouvert = true;
@@ -166,7 +80,6 @@ void exo2() {
 
 	do {
 		char* buffer = new char[35]; // essayer de s'en débarasser
-		
 		cin >> buffer; // on remplis la chaine de caractere
 		if (strcmp(buffer, "*") == 0) { // si le caractère de fin est tapé
 			inserer(liste_mots, longueur(liste_mots), buffer);
@@ -196,45 +109,22 @@ void exo2() {
 void exo3() {
 	Liste liste_dico;
 	initialiser(liste_dico, 1, 2);
-	bool flux_ouvert = true;
 
-	do {
-		char* buffer = new char[35];
-		cin >> buffer; // on remplis la chaine de caractere
-
-		if (strcmp(buffer, "*") == 0) { // si le caractère de fin est tapé
-			inserer(liste_dico, longueur(liste_dico), buffer);
-			flux_ouvert = false; // on arrête l'écriture
-		}
-		else {
-			inserer(liste_dico, longueur(liste_dico), buffer);
-		}
-	} while (flux_ouvert == true);
+	saisir_liste(liste_dico);
 	
 	doublon(liste_dico);
 	tri(liste_dico);
 
 	Liste liste_affichee;
 	initialiser(liste_affichee, 1, 2);
-	flux_ouvert = true;
 
-	do {
-		char* buffer = new char[35];
-		cin >> buffer; // on remplis la chaine de caractere
-
-		if (strcmp(buffer, "*") == 0) { // si le caractère de fin est tapé
-			inserer(liste_affichee, longueur(liste_affichee), buffer);
-			flux_ouvert = false; // on arrête l'écriture
-		}
-		else {
-			inserer(liste_affichee, longueur(liste_affichee), buffer);
-		}
-	} while (flux_ouvert == true);
+	saisir_liste(liste_affichee);
 
 	doublon(liste_affichee);
 	tri(liste_affichee);
 
-	agregliste(0, liste_affichee, liste_dico);
+	diffliste(0, liste_affichee, liste_dico);
+
 	detruire(liste_affichee);
 	detruire(liste_dico);
 }
@@ -242,88 +132,47 @@ void exo3() {
 void exo4() {
 	Liste liste_dico;
 	initialiser(liste_dico, 1, 2);
-	bool flux_ouvert = true;
 
-	do {
-		char* buffer = new char[35];
-		cin >> buffer; // on remplis la chaine de caractere
-
-		if (strcmp(buffer, "*") == 0) { // si le caractère de fin est tapé
-			inserer(liste_dico, longueur(liste_dico), buffer);
-			flux_ouvert = false; // on arrête l'écriture
-		}
-		else {
-			inserer(liste_dico, longueur(liste_dico), buffer);
-		}
-	} while (flux_ouvert == true);
+	saisir_liste(liste_dico);
 
 	Liste liste_affichee;
 	initialiser(liste_affichee, 1, 2);
-	flux_ouvert = true;
 
-	do {
-		char* buffer = new char[35];
-		cin >> buffer; // on remplis la chaine de caractere
-
-		if (strcmp(buffer, "*") == 0) { // si le caractère de fin est tapé
-			inserer(liste_affichee, longueur(liste_affichee), buffer);
-			flux_ouvert = false; // on arrête l'écriture
-		}
-		else {
-			inserer(liste_affichee, longueur(liste_affichee), buffer);
-		}
-	} while (flux_ouvert == true);
+	saisir_liste(liste_affichee);
 
 	doublon(liste_affichee);
 	tri(liste_affichee);
 
-	agregliste(1, liste_affichee, liste_dico);
+	diffliste(1, liste_affichee, liste_dico);
+
 	detruire(liste_affichee);
 	detruire(liste_dico);
 }
 
 void exo5() {
-	listedeConteneurTDE liste_de_listes ;
 	// trouver un moyen d'initialiser un liste* en codant de nouvelles fonctions dans l'entête Liste (ne pas oublier le brief)
 		// s'inspirer de celles fonctionnant déjà pour les listes char* (Liste* donne char**, donc un tableau de pointeurs vers des tableaux de char)
 		// il faut quelque chose d'extensible tout comme les listes
 		// peut être aussi recoder les fonctions d'insertion pour permettre de copier la valeur au lieu d'utiliser l'adresse pointée
-	ini_list_list(liste_de_listes, 2, 2);
-	bool flux_principal = true;
+	L_liste liste_de_listes ;
+	initialiser_ll(liste_de_listes, 2, 2);
 	
-	for (unsigned int i = 0;; i++) {
-		Liste liste_rentree;
-		initialiser(liste_rentree, 1, 2);
-		bool flux_ouvert = true;
+	saisirL_liste(liste_de_listes);
 
-		do {
-			char* buffer = new char[35];
-			cin >> buffer; // on remplis la chaine de caractere
-
-			if (strcmp(buffer, "*") == 0) { // si le caractère de fin est tapé
-				inserer(liste_rentree, longueur(liste_rentree), buffer);
-				flux_ouvert = false; // on arrête l'écriture
-			}
-			else {
-				inserer(liste_rentree, longueur(liste_rentree), buffer);
-			}
-		} while (flux_ouvert == true);
-
-		ecrire_list_list(liste_de_listes, i, liste_rentree);
-		if (longueur(liste_rentree) == 1) {
-			break;
-		}
-	}
+	Liste liste_agregee;
+	initialiser(liste_agregee, 1, 2);
 
 	for (unsigned int i = 0; i < liste_de_listes.nb; i++) {
 		for (unsigned int j = 0; j < longueur(liste_de_listes.tab[i]); j++) {
-			// parcourir les listes en les utilisant comme dico une à une
-			// si un mot apparaît dann plus de deux listes, on l'affiche
-			// bien comparer les 5 listes pour chaque mot
-			// peut être construire une liste qui récupèrerait tous les mots affichés plus de deux fois
-			cout << lire(liste_de_listes.tab[i], j) << endl;
+			inserer(liste_agregee, j, liste_de_listes.tab[i].c.tab[j]);
 		}
 	}
+
+	tri(liste_agregee);
+	mots_exclus(liste_agregee);
+
+	detruire_ll(liste_de_listes);
+	detruire(liste_agregee);
 }
 
 void exo6() {

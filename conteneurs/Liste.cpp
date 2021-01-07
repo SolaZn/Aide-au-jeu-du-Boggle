@@ -12,7 +12,7 @@ void initialiser(Liste& l, unsigned int capa, unsigned int pas) {
 	l.nb=0;
 }
 
-void ini_list_list(listedeConteneurTDE& liste_liste, unsigned int capa, unsigned int pas) {
+void initialiser_ll(L_liste& liste_liste, unsigned int capa, unsigned int pas) {
 	assert((capa > 0) && (pas > 0));
 	liste_liste.capacite = capa;
 	liste_liste.pasExtension = pas;
@@ -25,7 +25,6 @@ void ini_list_list(listedeConteneurTDE& liste_liste, unsigned int capa, unsigned
 		liste_liste.tab[i].nb = 0;
 	}
 }
-
 
  
 void detruire(Liste& l) {
@@ -46,7 +45,7 @@ void ecrire(Liste& l, unsigned int pos, const Item& it) {
 	ecrire(l.c, pos, it);
 }	
 
-void ecrire_list_list(listedeConteneurTDE& liste_liste, unsigned int i, Liste& l) {
+void ecrire_ll(L_liste& liste_liste, unsigned int i, Liste& l) {
 	if (i >= liste_liste.capacite) {
 		unsigned int newTaille = (i + 1) * liste_liste.pasExtension;
 		Liste* newT = new Liste[newTaille];
@@ -68,6 +67,18 @@ void ecrire_list_list(listedeConteneurTDE& liste_liste, unsigned int i, Liste& l
 	}
 
 	liste_liste.nb++;
+}
+
+void detruire_ll(L_liste& liste_liste) {
+	for (unsigned int k = 0; k < liste_liste.nb; k++) {
+		for (unsigned int h = 0; h < liste_liste.tab[k].nb; h++) {
+			delete[] liste_liste.tab[k].c.tab[h];
+		}
+		detruire(liste_liste.tab[k]);
+	}
+
+	delete[] liste_liste.tab;
+	liste_liste.tab = NULL;
 }
 
 void inserer(Liste& l, unsigned int pos, const Item& it) {

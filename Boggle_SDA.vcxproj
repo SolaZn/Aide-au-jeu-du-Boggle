@@ -140,11 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="conteneurs\ConteneurTDE.cpp" />
+    <ClCompile Include="conteneurs\fonc_liste.cpp" />
     <ClCompile Include="conteneurs\Liste.cpp" />
     <ClCompile Include="projet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="conteneurs\ConteneurTDE.h" />
+    <ClInclude Include="conteneurs\fonc_liste.h" />
     <ClInclude Include="conteneurs\Item.h" />
     <ClInclude Include="conteneurs\Liste.h" />
   </ItemGroup>

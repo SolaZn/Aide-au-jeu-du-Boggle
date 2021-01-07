@@ -14,14 +14,14 @@ struct Liste {
     unsigned int nb;	
 };
 
-struct listedeConteneurTDE {
+struct L_liste {
 	/// Capacité du conteneur (>0).
 	unsigned int capacite;
 	/// Pas d'extension du conteneur (>0).
 	unsigned int pasExtension;
 	/// Conteneur alloué en mémoire dynamique.
 	Liste* tab;
-	/// Nombre d'éléments stockés dans la liste de listes.
+	/// Nombre de listes stockés dans la liste de listes.
 	unsigned int nb;
 };
 
@@ -35,11 +35,11 @@ struct listedeConteneurTDE {
  */
 void initialiser(Liste& l, unsigned int capa, unsigned int pas);
 
-void ini_list_list(listedeConteneurTDE& liste_liste, unsigned int capa, unsigned int pas);
+void initialiser_ll(L_liste& liste_liste, unsigned int capa, unsigned int pas);
 
+void ecrire_ll(L_liste& liste_liste, unsigned int i, Liste& l);
 
-void ecrire_list_list(listedeConteneurTDE& liste_liste, unsigned int i, Liste& l);
-
+void detruire_ll(L_liste& liste_liste);
 
 /**
  * @brief Désallouer une liste.
