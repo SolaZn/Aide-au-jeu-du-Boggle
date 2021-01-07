@@ -14,6 +14,17 @@ struct Liste {
     unsigned int nb;	
 };
 
+struct listedeConteneurTDE {
+	/// Capacité du conteneur (>0).
+	unsigned int capacite;
+	/// Pas d'extension du conteneur (>0).
+	unsigned int pasExtension;
+	/// Conteneur alloué en mémoire dynamique.
+	Liste* tab;
+	/// Nombre d'éléments stockés dans la liste de listes.
+	unsigned int nb;
+};
+
 /**
  * @brief Initialiser une liste vide, la liste est allouée en mémoire dynamique.
  * @see detruire, la liste est à désallouer en fin d’utilisation.
@@ -23,6 +34,12 @@ struct Liste {
  * @pre capa > 0 et pas > 0.
  */
 void initialiser(Liste& l, unsigned int capa, unsigned int pas);
+
+void ini_list_list(listedeConteneurTDE& liste_liste, unsigned int capa, unsigned int pas);
+
+
+void ecrire_list_list(listedeConteneurTDE& liste_liste, unsigned int i, Liste& l);
+
 
 /**
  * @brief Désallouer une liste.

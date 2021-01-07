@@ -165,7 +165,7 @@ void exo2() {
 	initialiser(liste_mots, 1, 2);
 
 	do {
-		char* buffer = new char[35];
+		char* buffer = new char[35]; // essayer de s'en débarasser
 		
 		cin >> buffer; // on remplis la chaine de caractere
 		if (strcmp(buffer, "*") == 0) { // si le caractère de fin est tapé
@@ -283,10 +283,47 @@ void exo4() {
 }
 
 void exo5() {
-	Item* liste_de_listes ;
+	listedeConteneurTDE liste_de_listes ;
+	// trouver un moyen d'initialiser un liste* en codant de nouvelles fonctions dans l'entête Liste (ne pas oublier le brief)
+		// s'inspirer de celles fonctionnant déjà pour les listes char* (Liste* donne char**, donc un tableau de pointeurs vers des tableaux de char)
+		// il faut quelque chose d'extensible tout comme les listes
+		// peut être aussi recoder les fonctions d'insertion pour permettre de copier la valeur au lieu d'utiliser l'adresse pointée
+	ini_list_list(liste_de_listes, 2, 2);
+	bool flux_principal = true;
+	
+	for (unsigned int i = 0;; i++) {
+		Liste liste_rentree;
+		initialiser(liste_rentree, 1, 2);
+		bool flux_ouvert = true;
 
-	
-	
+		do {
+			char* buffer = new char[35];
+			cin >> buffer; // on remplis la chaine de caractere
+
+			if (strcmp(buffer, "*") == 0) { // si le caractère de fin est tapé
+				inserer(liste_rentree, longueur(liste_rentree), buffer);
+				flux_ouvert = false; // on arrête l'écriture
+			}
+			else {
+				inserer(liste_rentree, longueur(liste_rentree), buffer);
+			}
+		} while (flux_ouvert == true);
+
+		ecrire_list_list(liste_de_listes, i, liste_rentree);
+		if (longueur(liste_rentree) == 1) {
+			break;
+		}
+	}
+
+	for (unsigned int i = 0; i < liste_de_listes.nb; i++) {
+		for (unsigned int j = 0; j < longueur(liste_de_listes.tab[i]); j++) {
+			// parcourir les listes en les utilisant comme dico une à une
+			// si un mot apparaît dann plus de deux listes, on l'affiche
+			// bien comparer les 5 listes pour chaque mot
+			// peut être construire une liste qui récupèrerait tous les mots affichés plus de deux fois
+			cout << lire(liste_de_listes.tab[i], j) << endl;
+		}
+	}
 }
 
 void exo6() {
