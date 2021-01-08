@@ -1,3 +1,12 @@
+/**
+* SDA Projet période B : Rapport de projet sur la conception d’un programme dédié au jeu du « Boggle »
+* Auteurs : Anthony ZAKANI et Mehdi ZAOUI
+*	dans le cadre d'un DUT Informatique au sein de l'Université de Paris
+* Sur la base d'un code source issu de l'équipe pédagogique de l'IUT de Paris-Rives de Seine,
+* membre de l'Université de Paris.
+* Dernière mise à jour : vendredi 8 janvier 2021 à 22h46
+*/
+
 #include <iostream>
 #include <cassert>
 using namespace std;
