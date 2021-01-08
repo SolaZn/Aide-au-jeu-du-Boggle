@@ -2,7 +2,6 @@
 #include <cassert>
 using namespace std;
 
-#include "conteneurs/Liste.h"
 #include "conteneurs/fonc_liste.h"
 
 // Nous vous imposons de réunir les 6 programmes du projet de sda dans 
