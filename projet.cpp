@@ -1,10 +1,10 @@
 /**
-* SDA Projet période B : Rapport de projet sur la conception d’un programme dédié au jeu du « Boggle »
+* SDA Projet pÃ©riode B : Projet sur la conception dâ€™un programme dÃ©diÃ© au jeu du Â« Boggle Â»
 * Auteurs : Anthony ZAKANI et Mehdi ZAOUI
-*	dans le cadre d'un DUT Informatique au sein de l'Université de Paris
-* Sur la base d'un code source issu de l'équipe pédagogique de l'IUT de Paris-Rives de Seine,
-* membre de l'Université de Paris.
-* Dernière mise à jour : vendredi 8 janvier 2021 à 22h46
+*	dans le cadre d'un DUT Informatique au sein de l'UniversitÃ© de Paris
+* Sur la base d'un code source issu de l'Ã©quipe pÃ©dagogique de l'IUT de Paris-Rives de Seine,
+* membre de l'UniversitÃ© de Paris.
+* DerniÃ¨re mise Ã  jour : vendredi 8 janvier 2021 Ã  22h46
 */
 
 #include <iostream>
@@ -13,28 +13,28 @@ using namespace std;
 
 #include "conteneurs/fonc_liste.h"
 
-// Nous vous imposons de réunir les 6 programmes du projet de sda dans 
+// Nous vous imposons de rÃ©unir les 6 programmes du projet de sda dans 
 // un unique projet Visual. Ceci doit vous permettre de partager du code 
-// entre les programmes sans difficulté.
+// entre les programmes sans difficultÃ©.
 
-// Le programme qui suit montre l'architecture générale que nous proposons.
+// Le programme qui suit montre l'architecture gÃ©nÃ©rale que nous proposons.
 
-// A chaque programme correspond une fonction ne prenant aucun paramètre et 
+// A chaque programme correspond une fonction ne prenant aucun paramÃ¨tre et 
 // ne retournant rien (les fonctions exo1, exo2, etc ci-dessous). Rien ne 
-// vous empêche de répartir ces fonctions dans plusieurs fichiers .cpp.
+// vous empÃªche de rÃ©partir ces fonctions dans plusieurs fichiers .cpp.
 
-// Le main donné ci-dessous aiguille l'exécution en fonction d'une valeur 
-// entière lue au clavier 
+// Le main donnÃ© ci-dessous aiguille l'exÃ©cution en fonction d'une valeur 
+// entiÃ¨re lue au clavier 
 
-// Il est possible de lancer le programme avec les fichiers d'entrée fournis 
+// Il est possible de lancer le programme avec les fichiers d'entrÃ©e fournis 
 // sans pour autant en modifier le contenu.
 //
-// 1 - L'exécutable est supposé s'appeler Boggle_SDA.exe (à adapter selon 
+// 1 - L'exÃ©cutable est supposÃ© s'appeler Boggle_SDA.exe (Ã  adapter selon 
 // le nom de votre projet).
-// 2 - Dans l'invite de commande, vous devez vous placer dans le répertoire 
-// contenant votre exécutable (commande cd).
-// 3 - Les fichiers inXX.txt sont supposés être dans le même répertoire que 
-// l'exécutable.
+// 2 - Dans l'invite de commande, vous devez vous placer dans le rÃ©pertoire 
+// contenant votre exÃ©cutable (commande cd).
+// 3 - Les fichiers inXX.txt sont supposÃ©s Ãªtre dans le mÃªme rÃ©pertoire que 
+// l'exÃ©cutable.
 //
 // La commande lance le programme ci-dessous pour l'exercice 1 :
 // (echo 1 & type in1-2.txt) | Boggle_SDA.exe
@@ -50,11 +50,11 @@ void exo1() {
 
 	do {
 		cin >> buffer; // on remplis la chaine de caractere
-		if (strcmp(buffer, "*") == 0) { // si le caractère de fin est tapé
-			flux_ouvert = false; // on arrête l'écriture
+		if (strcmp(buffer, "*") == 0) { // si le caractÃ¨re de fin est tapÃ©
+			flux_ouvert = false; // on arrÃªte l'Ã©criture
 		}
 		else {
-			switch (strlen(buffer)){ // on vérifie la longueur de la chaine // faire une fct
+			switch (strlen(buffer)){ // on vÃ©rifie la longueur de la chaine // faire une fct
 				case 0:
 				case 1:
 				case 2: 
@@ -76,7 +76,7 @@ void exo1() {
 					nb_points += 11;	
 			}
 		}
-	} while (flux_ouvert == true); // tant que le "flux" est ouvert -> tant qu'on écrit
+	} while (flux_ouvert == true); // tant que le "flux" est ouvert -> tant qu'on Ã©crit
 	
 	cout << nb_points << endl;
 }
@@ -140,10 +140,10 @@ void exo4() {
 }
 
 void exo5() {
-	// trouver un moyen d'initialiser un liste* en codant de nouvelles fonctions dans l'entête Liste (ne pas oublier le brief)
-		// s'inspirer de celles fonctionnant déjà pour les listes char* (Liste* donne char**, donc un tableau de pointeurs vers des tableaux de char)
+	// trouver un moyen d'initialiser un liste* en codant de nouvelles fonctions dans l'entÃªte Liste (ne pas oublier le brief)
+		// s'inspirer de celles fonctionnant dÃ©jÃ  pour les listes char* (Liste* donne char**, donc un tableau de pointeurs vers des tableaux de char)
 		// il faut quelque chose d'extensible tout comme les listes
-		// peut être aussi recoder les fonctions d'insertion pour permettre de copier la valeur au lieu d'utiliser l'adresse pointée
+		// peut Ãªtre aussi recoder les fonctions d'insertion pour permettre de copier la valeur au lieu d'utiliser l'adresse pointÃ©e
 	L_liste liste_de_listes ;
 	initialiser_ll(liste_de_listes, 2, 2);
 	
