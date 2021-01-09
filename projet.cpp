@@ -83,7 +83,6 @@ void exo1() {
 
 void exo2() {
 	Liste liste_mots;
-	bool flux_ouvert = true;
 	initialiser(liste_mots, 1, 2);
 
 	saisir_liste(liste_mots);
